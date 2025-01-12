@@ -12,7 +12,7 @@ interface ContactsState {
 }
 
 const initialState: ContactsState = {
-  list: [],
+  list: []
 }
 
 const contactsSlice = createSlice({
@@ -32,8 +32,8 @@ const contactsSlice = createSlice({
       if (index !== -1) {
         state.list[index] = action.payload
       }
-    },
-  },
+    }
+  }
 })
 
 export const { addContact, removeContact, editContact } = contactsSlice.actions

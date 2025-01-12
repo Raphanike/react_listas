@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 export const List = styled.ul`
   list-style: none;
@@ -6,7 +6,7 @@ export const List = styled.ul`
   margin: 20px auto;
   width: 80%;
   max-width: 600px;
-`;
+`
 
 export const ListItem = styled.li`
   display: flex;
@@ -34,8 +34,7 @@ export const ListItem = styled.li`
       color: #555;
     }
   }
-`;
-
+`
 export const Button = styled.button`
   background-color: #e63946;
   color: #fff;
@@ -47,4 +46,4 @@ export const Button = styled.button`
   &:hover {
     background-color: #d62839;
   }
-`;
+`

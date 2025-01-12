@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 export const Form = styled.form`
   display: flex;
@@ -6,13 +6,13 @@ export const Form = styled.form`
   gap: 10px;
   width: 300px;
   margin: auto;
-`;
+`
 
 export const Input = styled.input`
   padding: 8px;
   border: 1px solid #ccc;
   border-radius: 4px;
-`;
+`
 
 export const Button = styled.button`
   padding: 10px;
@@ -25,4 +25,4 @@ export const Button = styled.button`
   &:hover {
     background-color: #0056b3;
   }
-`;
+`
