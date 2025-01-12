@@ -1,17 +1,11 @@
 {
-  "semi": false,
+  "semi": true,
   "singleQuote": true,
   "overrides": [
     {
       "files": "*.tsx",
       "options": {
         "semi": false
-      }
-    },
-    {
-      "files": "*.styled.ts",
-      "options": {
-        "semi": true
       }
     }
   ]
