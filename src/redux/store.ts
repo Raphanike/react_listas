@@ -3,8 +3,8 @@ import contactsReducer from './contactsSlice'
 
 const store = configureStore({
   reducer: {
-    contacts: contactsReducer
-  }
+    contacts: contactsReducer,
+  },
 })
 
 export type RootState = ReturnType<typeof store.getState>

@@ -1,28 +1,34 @@
 import styled from 'styled-components'
 
-export const Form = styled.form`
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  width: 300px;
-  margin: auto;
+interface ButtonProps {
+  buttonType: 'add' | 'adjust'
+}
+
+export const InputContainer = styled.div`
+  margin-bottom: 10px;
+  text-align: center;
 `
 
-export const Input = styled.input`
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-`
-
-export const Button = styled.button`
+export const Button = styled.button<ButtonProps>`
+  display: block;
+  width: 40%;
+  margin: 0 auto;
   padding: 10px;
-  background-color: #007bff;
+  margin-bottom: 20px;
+  background-color: ${(props) =>
+    props.buttonType === 'adjust'
+      ? '#ff9800'
+      : '#007bff'}; /* Laranja para Ajustar, Azul para Adicionar */
   color: white;
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  margin-top: 20px;
 
   &:hover {
-    background-color: #0056b3;
+    background-color: ${(props) =>
+      props.buttonType === 'adjust'
+        ? '#fb8c00'
+        : '#0056b3'}; /* Hover mais escuro */
   }
 `

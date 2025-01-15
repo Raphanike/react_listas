@@ -1,47 +1,80 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
-import { addContact } from '../../redux/contactsSlice'
-import { Form, Input, Button } from './ContactForm.styled'
+import { addContact, editContact } from '../../redux/contactsSlice'
+import { Button, InputContainer } from './ContactForm.styled'
+import { Contact } from '../../redux/contactsSlice'
 
-const ContactForm: React.FC = () => {
+interface ContactFormProps {
+  initialData?: Contact | null
+}
+
+const ContactForm: React.FC<ContactFormProps> = ({ initialData }) => {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [phone, setPhone] = useState('')
   const dispatch = useDispatch()
 
+  // Preencher os campos se houver dados iniciais para edição
+  useEffect(() => {
+    if (initialData) {
+      setName(initialData.name)
+      setEmail(initialData.email)
+      setPhone(initialData.phone)
+    }
+  }, [initialData])
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    dispatch(addContact({ id: Date.now().toString(), name, email, phone }))
+
+    const contact: Contact = {
+      id: initialData?.id || Date.now().toString(), // Novo id se for adicionar
+      name,
+      email,
+      phone,
+    }
+
+    if (initialData) {
+      dispatch(editContact(contact)) // Editar contato
+    } else {
+      dispatch(addContact(contact)) // Adicionar novo contato
+    }
+
+    // Limpar o formulário após o envio
     setName('')
     setEmail('')
     setPhone('')
   }
 
   return (
-    <Form onSubmit={handleSubmit}>
-      <Input
-        type="text"
-        placeholder="Name"
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-        required
-      />
-      <Input
-        type="email"
-        placeholder="Email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        required
-      />
-      <Input
-        type="tel"
-        placeholder="Phone"
-        value={phone}
-        onChange={(e) => setPhone(e.target.value)}
-        required
-      />
-      <Button type="submit">Add Contact</Button>
-    </Form>
+    <form onSubmit={handleSubmit}>
+      <InputContainer>
+        <input
+          type="text"
+          placeholder="Nome"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+        />
+      </InputContainer>
+      <InputContainer>
+        <input
+          type="email"
+          placeholder="Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+      </InputContainer>
+      <InputContainer>
+        <input
+          type="tel"
+          placeholder="Telefone"
+          value={phone}
+          onChange={(e) => setPhone(e.target.value)}
+        />
+      </InputContainer>
+      <Button type="submit" buttonType={initialData ? 'adjust' : 'add'}>
+        {initialData ? 'Ajustar contato' : 'Adicionar contato'}
+      </Button>
+    </form>
   )
 }
 
