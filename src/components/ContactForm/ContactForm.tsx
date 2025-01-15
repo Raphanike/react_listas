@@ -14,7 +14,6 @@ const ContactForm: React.FC<ContactFormProps> = ({ initialData }) => {
   const [phone, setPhone] = useState('')
   const dispatch = useDispatch()
 
-  // Preencher os campos se houver dados iniciais para edição
   useEffect(() => {
     if (initialData) {
       setName(initialData.name)
@@ -27,19 +26,18 @@ const ContactForm: React.FC<ContactFormProps> = ({ initialData }) => {
     e.preventDefault()
 
     const contact: Contact = {
-      id: initialData?.id || Date.now().toString(), // Novo id se for adicionar
+      id: initialData?.id || Date.now().toString(),
       name,
       email,
       phone,
     }
 
     if (initialData) {
-      dispatch(editContact(contact)) // Editar contato
+      dispatch(editContact(contact))
     } else {
-      dispatch(addContact(contact)) // Adicionar novo contato
+      dispatch(addContact(contact))
     }
 
-    // Limpar o formulário após o envio
     setName('')
     setEmail('')
     setPhone('')
